@@ -2,10 +2,12 @@ package com.example.ws16;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.jsoup.Jsoup;
@@ -13,22 +15,22 @@ import org.jsoup.nodes.Document;
 import java.io.IOException;
 public class MainActivity extends AppCompatActivity {
     Button button;
-    TextView textView;
+    ImageView imageView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         button = findViewById(R.id.button);
-        textView=findViewById(R.id.textView);
+        imageView=findViewById(R.id.imageView);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 MyTask mt=new MyTask();
-                mt.execute("https://ru.wikipedia.org/");
+                mt.execute("https://img2.freepng.ru/20180629/ph/kisspng-beak-platypus-goose-cygnini-duck-amon-5b367a571c1603.2293852915302969191151.jpg");
             }
         });
     }
-    class MyTask extends AsyncTask<String, Void, String>{
+    class MyTask extends AsyncTask<String, Void, Bitmap>{
         @Override
         protected String doInBackground(String... params){
             String title;
@@ -49,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute (String result){
             super.onPostExecute(result);
-            textView.setText(result);
+            imageView.setI(result);
         }
     }
 }
